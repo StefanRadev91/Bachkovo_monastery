@@ -88,15 +88,16 @@ export default function ChurchCalendar() {
 
         {/* Month Navigation */}
         <div style={{
-          height: '50px',
-          backgroundColor: '#A0522D',
+          height: '55px',
+          background: 'linear-gradient(135deg, #8B4513 0%, #A0522D 50%, #CD853F 100%)',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
-          padding: '0 20px',
-          marginBottom: '15px',
-          borderRadius: '8px',
-          boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)'
+          padding: '0 25px',
+          marginBottom: '20px',
+          borderRadius: '12px',
+          boxShadow: '0 4px 15px rgba(139, 69, 19, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2)',
+          border: '1px solid rgba(218, 165, 32, 0.3)'
         }}>
           <button
             onClick={() => navigateMonth(-1)}
@@ -178,30 +179,42 @@ export default function ChurchCalendar() {
                 alignItems: 'center',
                 justifyContent: 'center',
                 cursor: 'pointer',
-                backgroundColor: isToday(dayInfo.date) 
-                  ? '#8B4513' 
+                background: isToday(dayInfo.date) 
+                  ? 'linear-gradient(135deg, #8B4513 0%, #A0522D 100%)' 
                   : dayInfo.isCurrentMonth 
-                    ? '#F8F9FA' 
+                    ? 'linear-gradient(145deg, #FEFCF7 0%, #F5F3EC 100%)' 
                     : 'transparent',
                 color: isToday(dayInfo.date) 
-                  ? '#FFFFFF' 
+                  ? '#F5F5DC' 
                   : dayInfo.isCurrentMonth 
-                    ? '#333333' 
+                    ? '#8B4513' 
                     : '#CCCCCC',
                 fontSize: '16px',
                 fontWeight: isToday(dayInfo.date) ? 'bold' : 'normal',
-                transition: 'all 0.2s ease',
-                borderRadius: '8px',
-                border: dayInfo.isCurrentMonth ? '1px solid #E0E0E0' : 'none'
+                transition: 'all 0.3s ease',
+                borderRadius: '10px',
+                border: dayInfo.isCurrentMonth ? '1px solid rgba(139, 69, 19, 0.2)' : 'none',
+                boxShadow: isToday(dayInfo.date) 
+                  ? '0 4px 12px rgba(139, 69, 19, 0.4)' 
+                  : dayInfo.isCurrentMonth 
+                    ? '0 2px 6px rgba(139, 69, 19, 0.1)' 
+                    : 'none',
+                textShadow: isToday(dayInfo.date) ? '0 1px 2px rgba(0, 0, 0, 0.3)' : 'none'
               }}
               onMouseEnter={(e) => {
                 if (!isToday(dayInfo.date) && dayInfo.isCurrentMonth) {
-                  e.currentTarget.style.backgroundColor = '#E8E8E8';
+                  e.currentTarget.style.background = 'linear-gradient(135deg, #DAA520 0%, #B8860B 100%)';
+                  e.currentTarget.style.color = '#F5F5DC';
+                  e.currentTarget.style.transform = 'scale(1.1)';
+                  e.currentTarget.style.boxShadow = '0 4px 15px rgba(218, 165, 32, 0.4)';
                 }
               }}
               onMouseLeave={(e) => {
                 if (!isToday(dayInfo.date) && dayInfo.isCurrentMonth) {
-                  e.currentTarget.style.backgroundColor = '#F8F9FA';
+                  e.currentTarget.style.background = 'linear-gradient(145deg, #FEFCF7 0%, #F5F3EC 100%)';
+                  e.currentTarget.style.color = '#8B4513';
+                  e.currentTarget.style.transform = 'scale(1)';
+                  e.currentTarget.style.boxShadow = '0 2px 6px rgba(139, 69, 19, 0.1)';
                 }
               }}
             >

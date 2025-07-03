@@ -30,32 +30,35 @@ export default function Home() {
           component="a"
           href="#"
           style={{
-            color: '#640d0d',
-            fontSize: 15,
-            fontWeight: 500,
+            color: '#F5F5DC',
+            fontSize: 16,
+            fontWeight: 600,
             textDecoration: 'none',
-            transition: 'all 0.2s ease',
+            transition: 'all 0.3s ease',
             fontFamily: '"Cormorant Garamond", serif',
-            letterSpacing: '0.3px',
-            padding: '8px 12px',
-            borderRadius: '4px',
+            letterSpacing: '0.5px',
+            padding: '10px 16px',
+            borderRadius: '6px',
             cursor: 'pointer',
-            border: '1px solid transparent',
-            whiteSpace: 'nowrap'
+            border: '2px solid transparent',
+            whiteSpace: 'nowrap',
+            textShadow: '0 1px 2px rgba(0, 0, 0, 0.3)'
           }}
           onMouseEnter={(e) => {
-            e.currentTarget.style.color = '#8b1b1b';
-            e.currentTarget.style.backgroundColor = '#fff';
-            e.currentTarget.style.borderColor = '#e0e0e0';
-            e.currentTarget.style.transform = 'translateY(-1px)';
-            e.currentTarget.style.boxShadow = '0 2px 6px rgba(0,0,0,0.1)';
+            e.currentTarget.style.color = '#8B4513';
+            e.currentTarget.style.backgroundColor = '#F5F5DC';
+            e.currentTarget.style.borderColor = '#DAA520';
+            e.currentTarget.style.transform = 'translateY(-2px)';
+            e.currentTarget.style.boxShadow = '0 4px 12px rgba(218, 165, 32, 0.4)';
+            e.currentTarget.style.textShadow = 'none';
           }}
           onMouseLeave={(e) => {
-            e.currentTarget.style.color = '#640d0d';
+            e.currentTarget.style.color = '#F5F5DC';
             e.currentTarget.style.backgroundColor = 'transparent';
             e.currentTarget.style.borderColor = 'transparent';
             e.currentTarget.style.transform = 'translateY(0)';
             e.currentTarget.style.boxShadow = 'none';
+            e.currentTarget.style.textShadow = '0 1px 2px rgba(0, 0, 0, 0.3)';
           }}
         >
           {category}
@@ -65,16 +68,20 @@ export default function Home() {
   );
 
   return (
-    <Box style={{ background: '#fff' }}>
+    <Box style={{ 
+      background: 'linear-gradient(135deg, #F4F1E8 0%, #EDE6D6 50%, #F7F3E9 100%)',
+      minHeight: '100vh'
+    }}>
       {/* Navigation Categories - Two Rows */}
       <Box style={{ 
-        background: 'linear-gradient(135deg, #f8f9fa 0%, #f1f3f4 100%)', 
-        borderBottom: '1px solid #e0e0e0',
-        padding: '15px 20px',
+        background: 'linear-gradient(135deg, #8B4513 0%, #A0522D 50%, #CD853F 100%)', 
+        borderBottom: '3px solid #654321',
+        padding: '20px 20px',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        boxShadow: '0 4px 12px rgba(139, 69, 19, 0.3)'
       }}>
         {/* First Row */}
         <Box style={{ marginBottom: '8px' }}>
@@ -88,7 +95,14 @@ export default function Home() {
       </Box>
 
       {/* Monastery Text and Image Layout */}
-      <Box style={{ padding: '40px 20px', maxWidth: '1200px', margin: '0 auto' }}>
+      <Box style={{ 
+        padding: '50px 20px', 
+        maxWidth: '1200px', 
+        margin: '0 auto',
+        background: 'rgba(255, 255, 255, 0.1)',
+        borderRadius: '0 0 20px 20px',
+        backdropFilter: 'blur(5px)'
+      }}>
         <Box style={{ 
           display: 'flex', 
           flexDirection: 'row', 
@@ -195,39 +209,72 @@ export default function Home() {
         <div 
           className="content-card"
           style={{
-            background: 'white',
-            borderRadius: '10px',
-            boxShadow: '0 2px 10px rgba(0,0,0,0.1)',
-            padding: '25px',
-            height: 'fit-content'
+            background: 'linear-gradient(145deg, #FEFCF7 0%, #F9F6F0 100%)',
+            borderRadius: '15px',
+            boxShadow: '0 8px 25px rgba(139, 69, 19, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)',
+            padding: '30px',
+            height: 'fit-content',
+            border: '1px solid rgba(218, 165, 32, 0.2)',
+            position: 'relative',
+            overflow: 'hidden'
           }}
         >
+          <div style={{
+            position: 'absolute',
+            top: '0',
+            left: '0',
+            right: '0',
+            height: '4px',
+            background: 'linear-gradient(90deg, #DAA520 0%, #B8860B 50%, #DAA520 100%)'
+          }}></div>
           <NewsSection />
         </div>
         
         <div 
           className="content-card"
           style={{
-            background: 'white',
-            borderRadius: '10px',
-            boxShadow: '0 2px 10px rgba(0,0,0,0.1)',
-            padding: '25px',
-            height: 'fit-content'
+            background: 'linear-gradient(145deg, #FEFCF7 0%, #F9F6F0 100%)',
+            borderRadius: '15px',
+            boxShadow: '0 8px 25px rgba(139, 69, 19, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)',
+            padding: '30px',
+            height: 'fit-content',
+            border: '1px solid rgba(218, 165, 32, 0.2)',
+            position: 'relative',
+            overflow: 'hidden'
           }}
         >
+          <div style={{
+            position: 'absolute',
+            top: '0',
+            left: '0',
+            right: '0',
+            height: '4px',
+            background: 'linear-gradient(90deg, #DAA520 0%, #B8860B 50%, #DAA520 100%)'
+          }}></div>
           <ChurchCalendar />
         </div>
         
         <div 
           className="content-card"
           style={{
-            background: 'white',
-            borderRadius: '10px',
-            boxShadow: '0 2px 10px rgba(0,0,0,0.1)',
-            padding: '25px',
-            height: 'fit-content'
+            background: 'linear-gradient(145deg, #FEFCF7 0%, #F9F6F0 100%)',
+            borderRadius: '15px',
+            boxShadow: '0 8px 25px rgba(139, 69, 19, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)',
+            padding: '30px',
+            height: 'fit-content',
+            border: '1px solid rgba(218, 165, 32, 0.2)',
+            position: 'relative',
+            overflow: 'hidden'
           }}
         >
+          <div style={{
+            position: 'absolute',
+            top: '0',
+            left: '0',
+            right: '0',
+            height: '4px',
+            background: 'linear-gradient(90deg, #DAA520 0%, #B8860B 50%, #DAA520 100%)'
+          }}></div>
           <ServicesSection />
         </div>
       </div>
