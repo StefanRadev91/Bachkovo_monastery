@@ -36,10 +36,11 @@ export default function Home() {
     'Поклонничество'
   ];
 
-  // Mobile navigation with 3 rows of 4 items each
+  // Mobile navigation with better distribution for long text
   const mobileFirstRow = ['Настаняване', 'Новини', 'Галерия', 'Връзки'];
-  const mobileSecondRow = ['Контакти', 'История', 'Духовен живот', 'Манастирски комплекс'];
-  const mobileThirdRow = ['Чудотворна икона', 'Служби', 'Устав', 'Поклонничество'];
+  const mobileSecondRow = ['Контакти', 'История', 'Духовен живот'];
+  const mobileThirdRow = ['Манастирски комплекс', 'Служби'];
+  const mobileFourthRow = ['Чудотворна икона', 'Устав', 'Поклонничество'];
 
   const renderNavigationRow = (categories: string[]) => (
     <Flex 
@@ -111,7 +112,7 @@ export default function Home() {
         boxShadow: '0 4px 12px rgba(139, 69, 19, 0.3)'
       }}>
         {isMobile ? (
-          // Mobile: 3 rows of 4 items each
+          // Mobile: 4 rows with better text distribution
           <>
             <Box style={{ marginBottom: '6px' }}>
               {renderNavigationRow(mobileFirstRow)}
@@ -119,8 +120,11 @@ export default function Home() {
             <Box style={{ marginBottom: '6px' }}>
               {renderNavigationRow(mobileSecondRow)}
             </Box>
-            <Box>
+            <Box style={{ marginBottom: '6px' }}>
               {renderNavigationRow(mobileThirdRow)}
+            </Box>
+            <Box>
+              {renderNavigationRow(mobileFourthRow)}
             </Box>
           </>
         ) : (
