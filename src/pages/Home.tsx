@@ -203,7 +203,7 @@ export default function Home() {
           gap: '30px',
           maxWidth: '1200px',
           margin: '0 auto',
-          padding: '40px 20px'
+          padding: '20px 20px 30px 20px'
         }}
       >
         <div 
@@ -278,7 +278,6 @@ export default function Home() {
           <ServicesSection />
         </div>
       </div>
-
     </Box>
   );
 }

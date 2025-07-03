@@ -140,8 +140,9 @@ export default function ChurchCalendar() {
         <div style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(7, 1fr)',
-          gap: '1px',
-          marginBottom: '5px'
+          gap: '4px',
+          marginBottom: '8px',
+          padding: '0 5px'
         }}>
           {dayNames.map((day) => (
             <div
@@ -152,8 +153,9 @@ export default function ChurchCalendar() {
                 alignItems: 'center',
                 justifyContent: 'center',
                 fontSize: '15px',
-                color: '#666666',
-                fontWeight: 'bold'
+                color: '#8B4513',
+                fontWeight: 'bold',
+                width: '100%'
               }}
             >
               {day}
@@ -166,14 +168,15 @@ export default function ChurchCalendar() {
           display: 'grid',
           gridTemplateColumns: 'repeat(7, 1fr)',
           gridTemplateRows: 'repeat(6, 1fr)',
-          gap: '1px',
-          flex: 1
+          gap: '4px',
+          flex: 1,
+          padding: '0 5px'
         }}>
           {days.map((dayInfo, index) => (
             <div
               key={index}
               style={{
-                width: '40px',
+                width: '100%',
                 height: '40px',
                 display: 'flex',
                 alignItems: 'center',
