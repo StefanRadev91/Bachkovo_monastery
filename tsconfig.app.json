@@ -1,0 +1,29 @@
+// tsconfig.json
+{
+  "compilerOptions": {
+    "target": "ESNext",                      // компилираме към най-новия стандарт
+    "useDefineForClassFields": true,         // Vite-friendly
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "allowJs": false,
+    "skipLibCheck": true,                    // пропуска проверки в node_modules
+    "esModuleInterop": false,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,                          // стриктен режим
+    "forceConsistentCasingInFileNames": true,
+    "module": "ESNext",
+    "moduleResolution": "Node",              // стандартно Node.js резолвиране
+    "resolveJsonModule": true,
+    "isolatedModules": true,                 // задължително за Vite
+    "noEmit": true,                          // не генерираме .js файлове
+    "jsx": "react-jsx",                      // новата JSX трансформация
+    "baseUrl": ".",                          // за абсолютни импорти, ако някога ги добавиш
+    "paths": {
+      // примерно, ако искаш @components вместо ../../components
+      "@components/*": ["src/components/*"],
+      "@pages/*": ["src/pages/*"]
+    },
+    "types": ["vite/client"]                 // за типовете на Vite (import.meta.env)
+  },
+  "include": ["src", "src/env.d.ts"],        // env.d.ts за CSS/JSON декларaции
+  "references": [{ "path": "./tsconfig.node.json" }]
+}

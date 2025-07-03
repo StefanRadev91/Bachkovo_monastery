@@ -1,0 +1,10 @@
+// tsconfig.node.json
+{
+  "compilerOptions": {
+    "composite": true,
+    "module": "CommonJS",
+    "moduleResolution": "Node",
+    "skipLibCheck": true
+  },
+  "include": ["vite.config.ts"]
+}
