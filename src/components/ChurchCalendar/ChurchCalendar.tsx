@@ -1,8 +1,20 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function ChurchCalendar() {
   const [currentDate, setCurrentDate] = useState(new Date(2025, 6, 1)); // July 2025
   const today = new Date(2025, 6, 3); // July 3, 2025
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   const monthNames = [
     'Януари', 'Февруари', 'Март', 'Април', 'Май', 'Юни',
@@ -75,7 +87,7 @@ export default function ChurchCalendar() {
           marginBottom: '15px'
         }}>
           <h2 style={{
-            fontSize: '24px',
+            fontSize: isMobile ? '18px' : '24px',
             fontWeight: 'bold',
             color: '#8B4513',
             margin: '0',
@@ -115,7 +127,7 @@ export default function ChurchCalendar() {
           
           <span style={{
             color: '#FFFFFF',
-            fontSize: '20px',
+            fontSize: isMobile ? '16px' : '20px',
             fontWeight: 'bold'
           }}>
             {monthNames[currentDate.getMonth()]} {currentDate.getFullYear()}

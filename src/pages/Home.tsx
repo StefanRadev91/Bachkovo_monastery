@@ -1,9 +1,23 @@
 import { Box, Text, Image, Flex, Button } from "@mantine/core";
+import { useState, useEffect } from "react";
 import ChurchCalendar from "../components/ChurchCalendar/ChurchCalendar";
 import NewsSection from "../components/NewsSection/NewsSection";
 import ServicesSection from "../components/ServicesSection/ServicesSection";
 
 export default function Home() {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
   const firstRowCategories = [
     'Настаняване',
     'Новини', 
@@ -22,8 +36,21 @@ export default function Home() {
     'Поклонничество'
   ];
 
+  // Mobile navigation with 3 rows of 4 items each
+  const mobileFirstRow = ['Настаняване', 'Новини', 'Галерия', 'Връзки'];
+  const mobileSecondRow = ['Контакти', 'История', 'Духовен живот', 'Манастирски комплекс'];
+  const mobileThirdRow = ['Чудотворна икона', 'Служби', 'Устав', 'Поклонничество'];
+
   const renderNavigationRow = (categories: string[]) => (
-    <Flex justify="center" align="center" gap="md">
+    <Flex 
+      justify="center" 
+      align="center" 
+      gap={isMobile ? "4px" : "md"}
+      wrap="wrap"
+      style={{
+        lineHeight: isMobile ? '1.2' : '1.5'
+      }}
+    >
       {categories.map((category) => (
         <Text
           key={category}
@@ -31,13 +58,13 @@ export default function Home() {
           href="#"
           style={{
             color: '#F5F5DC',
-            fontSize: 16,
+            fontSize: isMobile ? 13 : 16,
             fontWeight: 600,
             textDecoration: 'none',
             transition: 'all 0.3s ease',
             fontFamily: '"Cormorant Garamond", serif',
             letterSpacing: '0.5px',
-            padding: '10px 16px',
+            padding: isMobile ? '5px 10px' : '10px 16px',
             borderRadius: '6px',
             cursor: 'pointer',
             border: '2px solid transparent',
@@ -76,22 +103,37 @@ export default function Home() {
       <Box style={{ 
         background: 'linear-gradient(135deg, #8B4513 0%, #A0522D 50%, #CD853F 100%)', 
         borderBottom: '3px solid #654321',
-        padding: '20px 20px',
+        padding: isMobile ? '15px 10px' : '20px 20px',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
         boxShadow: '0 4px 12px rgba(139, 69, 19, 0.3)'
       }}>
-        {/* First Row */}
-        <Box style={{ marginBottom: '8px' }}>
-          {renderNavigationRow(firstRowCategories)}
-        </Box>
-        
-        {/* Second Row */}
-        <Box>
-          {renderNavigationRow(secondRowCategories)}
-        </Box>
+        {isMobile ? (
+          // Mobile: 3 rows of 4 items each
+          <>
+            <Box style={{ marginBottom: '6px' }}>
+              {renderNavigationRow(mobileFirstRow)}
+            </Box>
+            <Box style={{ marginBottom: '6px' }}>
+              {renderNavigationRow(mobileSecondRow)}
+            </Box>
+            <Box>
+              {renderNavigationRow(mobileThirdRow)}
+            </Box>
+          </>
+        ) : (
+          // Desktop: 2 rows of 6 items each
+          <>
+            <Box style={{ marginBottom: '8px' }}>
+              {renderNavigationRow(firstRowCategories)}
+            </Box>
+            <Box>
+              {renderNavigationRow(secondRowCategories)}
+            </Box>
+          </>
+        )}
       </Box>
 
       {/* Monastery Text and Image Layout */}
@@ -105,9 +147,9 @@ export default function Home() {
       }}>
         <Box style={{ 
           display: 'flex', 
-          flexDirection: 'row', 
+          flexDirection: isMobile ? 'column' : 'row', 
           alignItems: 'flex-start', 
-          gap: '40px' 
+          gap: isMobile ? '30px' : '40px'
         }}>
           {/* Left Side - Text and Button Column */}
           <Box style={{ 
@@ -118,12 +160,12 @@ export default function Home() {
             <Text
               style={{
                 fontFamily: '"Cormorant Garamond", serif',
-                fontSize: 17,
+                fontSize: isMobile ? 15 : 17,
                 lineHeight: 1.7,
                 color: '#2c1810',
                 textAlign: 'justify',
                 letterSpacing: '0.3px',
-                marginBottom: '30px'
+                marginBottom: isMobile ? '20px' : '30px'
               }}
             >
               Бачковският манастир е вторият по големина и значимост български манастир. 
@@ -171,7 +213,8 @@ export default function Home() {
 
           {/* Right Side - Large Monastery Photo and Services */}
           <Box style={{ 
-            flex: '0 0 500px',
+            flex: isMobile ? 'none' : '0 0 500px',
+            width: isMobile ? '100%' : 'auto',
             display: 'flex',
             flexDirection: 'column'
           }}>
@@ -185,7 +228,7 @@ export default function Home() {
                 src="/images/bachkovo.jpg"
                 alt="Въздушна гледка на Бачковския манастир"
                 radius={0}
-                height={400}
+                height={isMobile ? 250 : 400}
                 fit="cover"
                 style={{ width: "100%" }}
               />
@@ -199,11 +242,11 @@ export default function Home() {
         className="main-content-container"
         style={{
           display: 'grid',
-          gridTemplateColumns: '1fr 1fr 1fr',
-          gap: '30px',
+          gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr 1fr',
+          gap: isMobile ? '20px' : '30px',
           maxWidth: '1200px',
           margin: '0 auto',
-          padding: '20px 20px 30px 20px'
+          padding: isMobile ? '20px 15px 30px 15px' : '20px 20px 30px 20px'
         }}
       >
         <div 
